@@ -32,7 +32,7 @@ int main()
 
     // 자기소개 다음버튼
     Texture ima6;
-    if (!ima6.loadFromFile("C:/C++연습/Project1/Project1/Group 64.png"))
+    if (!ima6.loadFromFile("C:/C++연습/Project1/Project1/button1.png"))
         return EXIT_FAILURE;
 
     // 보드
@@ -66,6 +66,14 @@ int main()
     sprite2.setPosition(500, 520);
     sprite4.setPosition(950, 560);
     sprite6.setPosition(1050, 600);
+    
+    // 스프라이트 크기 줄이기
+    sprite1.setScale(0.25f, 0.25f);
+    sprite2.setScale(0.25f, 0.25f);
+    sprite3.setScale(0.25f, 0.25f);
+    sprite4.setScale(0.25f, 0.25f);
+    sprite5.setScale(0.25f, 0.25f);
+    sprite6.setScale(0.25f, 0.25f);
 
     // 스프라이트의 크기를 윈도우의 크기에 맞게 조정
     Vector2u windowSize = window.getSize();
