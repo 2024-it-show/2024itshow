@@ -7,37 +7,37 @@ int main()
     // 텍스처 생성 및 이미지 파일 로드
     // 시작화면 배경
     Texture ima1;
-    if (!ima1.loadFromFile("C:/Users/yeoba/Downloads/iMac - 2.png")) // 이미지 경로 입력
+    if (!ima1.loadFromFile("C:/C++연습/Project1/Project1/iMac - 2.png")) // 이미지 경로 입력
         return EXIT_FAILURE;
 
     // start 버튼 이미지
     Texture ima2;
-    if (!ima2.loadFromFile("C:/Users/yeoba/Downloads/Group 13.png"))
+    if (!ima2.loadFromFile("C:/C++연습/Project1/Project1/Group 13.png"))
         return EXIT_FAILURE;
 
     // 게임 설명 배경
     Texture ima3;
-    if (!ima3.loadFromFile("C:/Users/yeoba/Downloads/iMac - 20.png"))
+    if (!ima3.loadFromFile("C:/C++연습/Project1/Project1/iMac - 20.png"))
         return EXIT_FAILURE;
 
     // 게임 설명 다음 버튼
     Texture ima4;
-    if (!ima4.loadFromFile("C:/Users/yeoba/Downloads/Group 132.png"))
+    if (!ima4.loadFromFile("C:/C++연습/Project1/Project1/Group 132.png"))
         return EXIT_FAILURE;
 
     // 자기소개
     Texture ima5;
-    if (!ima5.loadFromFile("C:/Users/yeoba/Downloads/iMac - 74.png"))
+    if (!ima5.loadFromFile("C:/C++연습/Project1/Project1/iMac - 74.png"))
         return EXIT_FAILURE;
 
     // 자기소개 다음버튼
     Texture ima6;
-    if (!ima6.loadFromFile("C:/Users/yeoba/Downloads/Group 64.png"))
+    if (!ima6.loadFromFile("C:/C++연습/Project1/Project1/Group 64.png"))
         return EXIT_FAILURE;
 
     // 보드
     Texture ima7;
-    if (!ima7.loadFromFile("C:/Users/yeoba/Downloads/iMac - 4 (2).png"))
+    if (!ima7.loadFromFile("C:/C++연습/Project1/Project1/iMac - 4 (2).png"))
         return EXIT_FAILURE;
 
     // 스프라이트 생성 및 텍스처 설정
