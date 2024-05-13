@@ -18,7 +18,7 @@ void mouseHover(sf::RenderWindow& window, sf::Sprite& sprite1, sf::Sprite& sprit
 
 int main()
 {
-    RenderWindow window(VideoMode(1280, 720), "My window", Style::Titlebar | Style::Close); // 화면크기를 변경하지 못하도록 함(필요없으면 지울 것!)
+    RenderWindow window(VideoMode(1280, 720), "My window"); // 화면크기를 변경하지 못하도록 함(필요없으면 지울 것!)
 
     // 텍스처 생성 및 이미지 파일 로드
     // 시작화면 배경
@@ -96,7 +96,7 @@ int main()
     sprite8.setPosition(sprite7.getPosition());
 
     // 스프라이트 위치 설정
-    sprite2.setPosition(500, 520);
+    sprite2.setPosition(535, 500);
     sprite5.setPosition(950, 560);
     sprite8.setPosition(1050, 600);
     
