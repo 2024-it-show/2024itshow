@@ -23,7 +23,7 @@ int main()
     // 텍스처 생성 및 이미지 파일 로드
     // 시작화면 배경
     Texture ima1;
-    if (!ima1.loadFromFile("C:/C++연습/Project1/Project1/iMac - 2.png")) // 이미지 경로 입력
+    if (!ima1.loadFromFile("C:/C++연습/Project1/Project1/startB1.png")) // 이미지 경로 입력
         return EXIT_FAILURE;
 
     // start 버튼 이미지
@@ -37,7 +37,7 @@ int main()
 
     // 게임 설명 배경
     Texture ima4;
-    if (!ima4.loadFromFile("C:/C++연습/Project1/Project1/iMac - 20.png"))
+    if (!ima4.loadFromFile("C:/C++연습/Project1/Project1/startB2.png"))
         return EXIT_FAILURE;
 
     // 게임 설명 다음 버튼
@@ -52,7 +52,7 @@ int main()
 
     // 자기소개
     Texture ima7;
-    if (!ima7.loadFromFile("C:/C++연습/Project1/Project1/iMac - 74.png"))
+    if (!ima7.loadFromFile("C:/C++연습/Project1/Project1/startB3.png"))
         return EXIT_FAILURE;
 
     // 자기소개 다음버튼
