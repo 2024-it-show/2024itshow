@@ -39,23 +39,32 @@ int main()
     Texture s_button[3]; // 시작버튼
     s_button[0].loadFromFile("start1.png");
     s_button[1].loadFromFile("button1.png");
-    s_button[2].loadFromFile("next1.png");
 
-    Sprite s_nextbutton[3];
-    for (int i = 0; i < 3; i++) {
+    Sprite s_nextbutton[2];
+    for (int i = 0; i < 2; i++) {
         s_nextbutton[i].setTexture(s_button[i]);
         s_nextbutton[i].setScale(0.25f, 0.25f);
     }
     s_nextbutton[0].setPosition(535, 500);
     s_nextbutton[1].setPosition(950, 560);
-    s_nextbutton[2].setPosition(1050, 600);
 
     Texture s_buttonH[3]; // 시작버튼 호버
     s_buttonH[0].loadFromFile("start2.png");
     s_buttonH[1].loadFromFile("button2.png");
-    s_buttonH[2].loadFromFile("next2.png");
     //여까지
 
+
+    // 랜덤
+    Texture r_back; // 시작배경
+    r_back.loadFromFile("Random1.png");
+    Sprite r_background;
+    r_background.setTexture(r_back);
+    r_background.setScale(0.25f, 0.25f);
+    bool rB = false;
+
+    // 여까지
+
+    // 메인 배경
     Texture back[20];
     back[0].loadFromFile("game-back.png");
     back[1].loadFromFile("Hch1.png");
@@ -85,6 +94,8 @@ int main()
     bool Mch1 = false, Mch1_2 = false, Mch1B = false, Mch1G = false, Mch2 = false, Mch2B = false, Mch2G = false;
     bool Jch1 = false, JchG = false, JchB = false, Jch2 = false, Jch = false;
     bool Ch13 = false;
+
+    // 칸
     Texture* block = new Texture[24];
     block[0].loadFromFile("1.png");
     block[1].loadFromFile("2.png");
@@ -134,8 +145,6 @@ int main()
             button[20 + i].setPosition(924, 147 + (i * 106));
         }
     }
-
-
 
     Texture* blockhover = new Texture[24];
     blockhover[0].loadFromFile("1h.png");
@@ -334,7 +343,9 @@ int main()
 
             Vector2f mousePos = app.mapPixelToCoords(Mouse::getPosition(app));
 
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 2; i++) {
+                // 추가
+
                 if (s_nextbutton[i].getGlobalBounds().contains(static_cast<Vector2f>(mousePos))) {
                     isButtonHovered = true;
                 }
@@ -359,10 +370,6 @@ int main()
                             sB2 = false;
                             sB3 = true;
                         }
-                        else if (i == 2 && sB3) {
-                            sB3 = false;
-                            Screen1 = true;
-                        }
                     }
                 }
             }
@@ -386,7 +393,20 @@ int main()
 
                 if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
                     if (button[i].getGlobalBounds().contains(static_cast<Vector2f>(mousePos))) {
-                        if (i == 3 && Screen1) {
+
+                        // 추가됨
+                        int random = (int)(rand() % 5) + 1; // 1~5
+                        if (random == 1) r_back.loadFromFile("Random1.png");
+                        else if (random == 2) r_back.loadFromFile("Random2.png");
+                        else if (random == 3) r_back.loadFromFile("Random3.png");
+                        else if (random == 4) r_back.loadFromFile("Random4.png");
+
+                        if ((i == 5 || i == 9 || i == 16 || i == 21) && Screen1) {
+                            rB = true;
+                            Screen1 = false;
+                        }
+
+                        else if (i == 3 && Screen1) {
                             Screen1 = false;
                             Hch1 = true;
                         }
@@ -453,9 +473,9 @@ int main()
                         }
                     }
                 }
-
             }
 
+            // nextButton
             for (int i = 0; i < 4; i++) {
                 if (nextbutton[i].getGlobalBounds().contains(static_cast<Vector2f>(mousePos))) {
                     isButtonHovered = true;
@@ -489,19 +509,22 @@ int main()
                             text2.setString(L"혹시 주문이\n잘못 들어갔나요?");
                             text2.setPosition(901, 433);
                         }
-                        else if (i == 2 && (HchB || HchG || Mch1G || Mch1B || Mch2G || Mch2B || JchB || JchG || Ch13)) {
+                        // 변경됨
+                        else if (i == 2 && (HchB || HchG || Mch1G || Mch1B || Mch2G || Mch2B || JchB || JchG || Ch13 || sB3 || rB)) {
                             HchB = false, HchG = false;
                             Mch1G = false, Mch1B = false, Mch2G = false, Mch2B = false;
                             JchB = false, JchG = false;
                             Ch13 = false; chSBTEXT = false;
+                            rB = false;
+                            sB3 = false;
                             Screen1 = true;
                         }
-                        else if (i == 0 && Screen1) {
-                            popup1 = false;
-                            popup2 = false;
-                            popup3 = false;
-                            popup4 = false;
-                        }
+                    }
+                    else if (i == 0 && Screen1) {
+                        popup1 = false;
+                        popup2 = false;
+                        popup3 = false;
+                        popup4 = false;
                     }
                 }
             }
@@ -649,11 +672,8 @@ int main()
         std::snprintf(buffer4, sizeof(buffer4), "%3d", Xheart);
         XheartS.setString(buffer4);
 
-        if (sB1) {
-            app.draw(s_background[0]);
-            app.draw(s_nextbutton[0]);
-        }
 
+        // 변경됨
         if (Screen1) {
             app.draw(background[0]);
             for (int i = 23; i >= 0; i--) {
@@ -771,15 +791,24 @@ int main()
             }
         }
 
+        // 추가
         //sB
+        if (sB1) {
+            app.draw(s_background[0]);
+            app.draw(s_nextbutton[0]);
+        }
         if (sB2) {
-
             app.draw(s_background[1]);
             app.draw(s_nextbutton[1]);
         }
         if (sB3) {
             app.draw(s_background[2]);
-            app.draw(s_nextbutton[2]);
+        }
+
+        // 추가
+        //rB
+        if (rB) {
+            app.draw(r_background);
         }
 
         //Hch
@@ -874,8 +903,8 @@ int main()
             app.draw(nextbutton[2]);
             app.draw(chSB);
             chSBTEXT = true;
-        }
-        if (Ch13 && Ch13B) {
+        } // 추가됨
+        if ((Ch13 && Ch13B) || rB || sB3) {
             app.draw(nextbutton[2]);
         }
 
